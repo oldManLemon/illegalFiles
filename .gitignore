@@ -1,4 +1,4 @@
-test.log
-
 other
 __pycache__
+email.py
+*.log

@@ -1,6 +1,7 @@
 import glob
 import settings
 import folderScan as scan
+import log
 
 rootFolder = settings.scanDir
 find =  settings.illegals
@@ -13,14 +14,17 @@ def checkIfNormal(filepath):
       int(filepath[8]) #8th char is the the beginning of the job number. 
       #print(filepath)
     except ValueError:
-        print("Abnormal Folder Found: ",filepath)
+        log.logger(f"Abnormal Folder Found: {filepath}")
+        #print()
    
 def jobDiscovery():
     for filename in glob.iglob(rootFolder+'/*/', recursive=True): #Finds the outside jobnumber eg 14079
         checkIfNormal(filename)
-        print ("Job: ", filename)
+        #print ("Job: ", filename)
+        log.logger(f"Job: {filename}")
         scan.scanFolderIgnore(filename)
         for suffix in glob.iglob(filename+'/_?/', recursive=True): # Takes Jobnumber and searches for a suffix and returns full path eg J:\2014\14011\_B\
-            print('Sacnning', suffix)
+            #print('Sacnning', suffix)
+            log.logger(f'Sacnning {suffix}')
             scan.scanFolder(suffix)
     
