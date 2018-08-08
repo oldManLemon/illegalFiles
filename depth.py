@@ -18,8 +18,9 @@ def checkIfNormal(filepath):
 def jobDiscovery():
     for filename in glob.iglob(rootFolder+'/*/', recursive=True): #Finds the outside jobnumber eg 14079
         checkIfNormal(filename)
+        print ("Job: ", filename)
         scan.scanFolderIgnore(filename)
         for suffix in glob.iglob(filename+'/_?/', recursive=True): # Takes Jobnumber and searches for a suffix and returns full path eg J:\2014\14011\_B\
             print('Sacnning', suffix)
-            #scan.scanFolder(suffix)
+            scan.scanFolder(suffix)
     
