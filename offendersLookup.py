@@ -45,27 +45,30 @@ def nameSearcher(number):
     return row[1],row[3],row[9]
 
 def namingNames(head,minions):
-    contacts = open('mycontacts.txt','w')
+    contacts = []
+    
     if (len(head) == 2):
         i = 0
         while i < len(head):
             res = nameSearcher(head[i])
-            contacts.write(str(res)+'\n')
+            contacts.append(res)
             i +=1
     else:
             print(head[0])
             res = nameSearcher(head[0])
-            contacts.write(str(res)+'\n')
+            contacts.append(res)
     
     for x in minions:
         res = nameSearcher(x)
-        contacts.write(str(res)+'\n')
+        contacts.append(res)
+
+    return(contacts)
 
 
 
-headHonchos = headOffenders('ad915')
-print(headHonchos)
-minions = staffOffenders('ad915')
-print(minions)
+headHonchos = headOffenders('14250')
+#print(headHonchos)
+minions = staffOffenders('14250')
+#rint(minions)
 namingNames(headHonchos,minions)
 
