@@ -14,15 +14,15 @@ def get_contacts(filename):
     read from a file specified by filename.
     """
     
-    fname = []
-    lname = []
+    firstname = []
+    lastname = []
     emails = []
-    with open(filename, mode='r', encoding='utf-8') as contacts_file:
-        for a_contact in contacts_file:
-            fname.append(a_contact.split(',')[0])
-            lname.append(a_contact.split(',')[1])
-            emails.append(a_contact.split(',')[2])
-    return fname,lname, emails
+    # with open(filename, mode='r', encoding='utf-8') as contacts_file:
+    #     for a_contact in contacts_file:
+    #         fname.append(a_contact.split(',')[0])
+    #         lname.append(a_contact.split(',')[1])
+    #         emails.append(a_contact.split(',')[2])
+    return firstname,lastname, emails
 
 def read_template(filename):
     """
