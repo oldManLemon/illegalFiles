@@ -24,10 +24,22 @@ def jobDiscovery():
         #print ("Job: ", filename)
         log.logger(f"Job: {filename}")
         scan.scanFolderIgnore(filename)
+        # flag, toLog = scan.scanFolderIgnore(filename)
+        # if flag==None:
+        #     print("YAY!")
+        # else:
+        #     print(toLog)
+      
         
 
         for suffix in glob.iglob(filename+'/_?/', recursive=True): # Takes Jobnumber and searches for a suffix and returns full path eg J:\2014\14011\_B\
             #print('Sacnning', suffix)
             log.logger(f'Sacnning {suffix}')
             scan.scanFolder(suffix)
+            # flag, toLog = scan.scanFolder(suffix)
+            # if flag==None:
+            #     print("YAY!")
+            # else:
+            #     print(toLog)
+
     

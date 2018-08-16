@@ -8,6 +8,9 @@ MY_USER = settings.masterUser
 MY_ADDRESS = 'passive-aggressive-bot@bornhorstward.com.au'
 PASSWORD = settings.masterPass
 
+def emailService(jobNumber):
+    print("")
+
 def get_contacts(filename):
     """
     Return two lists names, emails containing names and email addresses

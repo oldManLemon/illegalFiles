@@ -6,6 +6,7 @@ import log
 
 
 
+
 rootFolder = settings.scanDir
 find =  settings.illegals
 depth = 0
@@ -22,7 +23,8 @@ def scanFolder(folder):
         #print (os.path.join(dirpath, filename))
         toLog = (os.path.join(dirpath, filename))
         log.logger(toLog)
-        return flag, toLog
+        print(dirnames)
+    
 
 #Scan the the main folder ignoring suffixes
 def scanFolderIgnore(folder):
@@ -34,5 +36,6 @@ def scanFolderIgnore(folder):
             #print (os.path.join(dirpath, filename))        
             toLog = (os.path.join(dirpath, filename))
             log.logger(toLog)
-            return flag, toLog
+            print(dirs)
+    
 
