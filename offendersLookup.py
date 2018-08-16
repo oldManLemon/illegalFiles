@@ -16,11 +16,14 @@ def dataMagic(jobChosen):
         findJob = "select * from dbo.Projects where ProjectNo='"+str(jobChosen)+"';"
         cursor.execute(findJob)
         row = cursor.fetchone()
+        # while row:
+        #     if row[13] == row[14]:
+        #         return (row[13],) #the comma makes it a tuple, easier to deal with for consistency
+        #     else:
+        #         return (row[13], row[14])
+        """ Only get Project Leaders as per Brett Request"""
         while row:
-            if row[13] == row[14]:
-                return (row[13],) #the comma makes it a tuple, easier to deal with for consistency
-            else:
-                return (row[13], row[14])
+            return (row[14],)
     """ Get the Staff """
     def staffOffenders(jobChosen):
         findStaff = "select * from dbo.Project_Staff where ProjectNumber='"+str(jobChosen)+"';"
@@ -46,7 +49,7 @@ def dataMagic(jobChosen):
                 contacts.append(res)
                 i +=1
         else:
-                print(head[0])
+                #print(head[0])
                 res = nameSearcher(head[0])
                 contacts.append(res)
 
@@ -61,9 +64,25 @@ def dataMagic(jobChosen):
     staff = staffOffenders(jobChosen)
     contactList = namingNames(leaders,staff)
     return contactList
-
+    
+   
+    
+    
 
    
 
-#test = dataMagic('14250S')
+#eh = dataMagic('11050f')
+#print(eh)
+#for contact in eh:
+    #print(contact)
+    #firstName = contact[0]
+    #lastName = contact[1]
+    #email = contact[2]
+    #print(firstName, lastName, email)
+
+
 #print(test)
+# leader = test[0]
+# print('Leader:', leader)
+# leaderName = leader[0]+' '+leader[1]
+# print('Leader Name:', leaderName)

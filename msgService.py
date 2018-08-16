@@ -1,6 +1,7 @@
 import smtplib
 import settings
 from string import Template
+import offendersLookup as lookup
 
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -8,24 +9,74 @@ MY_USER = settings.masterUser
 MY_ADDRESS = 'passive-aggressive-bot@bornhorstward.com.au'
 PASSWORD = settings.masterPass
 
-def emailService(jobNumber):
-    print("")
+def emailService(jobNumber, illegalFiles):
+    #print(jobNumber)
+    #print(illegalFiles)
+    firstName = []
+    lastName = []
+    email = ['a.hase@bornhorstward.com.au']
+    contacts = lookup.dataMagic(jobNumber)
+    for contact in contacts:
+        #print(contact)
+        #firstName = contact[0]
+        #lastName = contact[1]
+        #email = contact[2]
+        firstName.append(contact[0])
+        lastName.append(contact[1])
+        email.append(contact[2])
+        #print(firstName, lastName, email)
+    #print('Firstname:', firstName)
+    #print('Lastname:', lastName)
+    #print('Email:', email)
+        # set up the SMTP server
+    s = smtplib.SMTP(host='mail.bornhorstward.com.au', port=25)
+    s.starttls()
+    s.login(MY_USER, PASSWORD)
+    msg = MIMEMultipart()
+    sendto = 'a.hase@bornhorstward.com.au'
+    for address in email:
+        try:
+            sendto+=','+address
+        
+        except TypeError:
+            sendto+=''
 
-def get_contacts(filename):
-    """
-    Return two lists names, emails containing names and email addresses
-    read from a file specified by filename.
-    """
+
+            # setup the parameters of the message
+    print(sendto)        
+    msg['From']=MY_ADDRESS
+    msg['To']=sendto
+    msg['Subject']=jobNumber+" Contains files that should be filed elsewhere"
+    #messageTemplate = read_template('message.txt')
+    message = "Hey  "
+    for fname in firstName:
+        message += fname+", "
+    message += f"<br>You are being sent this email because you are registered as working on <b>{jobNumber}</b>.<br>"
+    message += f"As per BW's procedures <a href='http://bwwiki:49494/point-cloud-procedures/'>Point Cloud, CCTV, GoPro Procuedures</a>"
+    message += " you will need to the below files into an appropriate folder.<br>"
+    #message = f"Please see x and file or delete this files as you see fit.\n {illegalFiles}, once these are you removed I will forgive you"
+    for badFile in illegalFiles:
+        #message = messageTemplate.substitute(badFiles=badFile.title()+'\r\n').join(msg)
+        message += f'<a href="{badFile}">{badFile}</a><br>'
+    message += "Thanks <br> Passive Aggresive Bot"
+
+    # add in the message body
+    msg.attach(MIMEText(message, 'html'))
     
-    firstname = []
-    lastname = []
-    emails = []
-    # with open(filename, mode='r', encoding='utf-8') as contacts_file:
-    #     for a_contact in contacts_file:
-    #         fname.append(a_contact.split(',')[0])
-    #         lname.append(a_contact.split(',')[1])
-    #         emails.append(a_contact.split(',')[2])
-    return firstname,lastname, emails
+     # send the message via the server set up earlier.
+    s.send_message(msg)
+    #s.sendmail(MY_ADDRESS, ['a.hase@bornhorstward.com.au'], msg.as_string)
+    del msg
+        
+    # Terminate the SMTP session and close the connection
+    s.quit()
+
+    # print(contacts)
+    # leader = contacts[0]
+    # leaderName = leader[0] + leader[1]
+    # leader 
+
+
 
 def read_template(filename):
     """
@@ -37,40 +88,40 @@ def read_template(filename):
         template_file_content = template_file.read()
     return Template(template_file_content)
 
-def main():
-    fname, lname, emails = get_contacts('mycontacts.txt') # read contacts
-    message_template = read_template('message.txt')
+# def main():
+   
+#     message_template = read_template('message.txt')
 
-    # set up the SMTP server
-    s = smtplib.SMTP(host='mail.bornhorstward.com.au', port=25)
-    s.starttls()
-    s.login(MY_USER, PASSWORD)
+#     # set up the SMTP server
+#     s = smtplib.SMTP(host='mail.bornhorstward.com.au', port=25)
+#     s.starttls()
+#     s.login(MY_USER, PASSWORD)
 
-    # For each contact, send the email:
-    for fnames, lnames, email in zip(fname, lname, emails):
-        msg = MIMEMultipart()       # create a message
+#     # For each contact, send the email:
+#     for fnames, lnames, email in zip(fname, lname, emails):
+#         msg = MIMEMultipart()       # create a message
 
-        # add in the actual person name to the message template
-        message = message_template.substitute(PERSON_fNAME=fnames.title())
-        message = message_template.substitute(PERSON_lNAME=lnames.title())
+#         # add in the actual person name to the message template
+#         message = message_template.substitute(PERSON_fNAME=fnames.title())
+#         message = message_template.substitute(PERSON_lNAME=lnames.title())
 
-        # Prints out the message body for our sake
-        print(message)
+#         # Prints out the message body for our sake
+#         print(message)
 
-        # setup the parameters of the message
-        msg['From']=MY_ADDRESS
-        msg['To']=email
-        msg['Subject']="This is TEST"
+#         # setup the parameters of the message
+#         msg['From']=MY_ADDRESS
+#         msg['To']=email
+#         msg['Subject']="This is TEST"
         
-        # add in the message body
-        msg.attach(MIMEText(message, 'plain'))
+#         # add in the message body
+#         msg.attach(MIMEText(message, 'plain'))
         
-        # send the message via the server set up earlier.
-        s.send_message(msg)
-        del msg
+#         # send the message via the server set up earlier.
+#         s.send_message(msg)
+#         del msg
         
-    # Terminate the SMTP session and close the connection
-    s.quit()
+#     # Terminate the SMTP session and close the connection
+#     s.quit()
     
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()

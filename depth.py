@@ -2,6 +2,7 @@ import glob
 import settings
 import folderScan as scan
 import log
+import msgService as msg
 
 rootFolder = settings.scanDir
 find =  settings.illegals
@@ -26,8 +27,10 @@ def jobDiscovery():
         jobID = filename[8:13]
         #print(folderSerached)
         if bad != None:
-            print(jobID)
-            print(bad)
+            #print(jobID)
+            #print(bad)
+            msg.emailService(jobID, bad)
+
    
         
 
@@ -37,7 +40,9 @@ def jobDiscovery():
             suffixID = suffix[15]
             #print(suffixFullName)
             if bad != None:
-                print(jobID+suffixID)
-                print(bad)
+                combinedJobID = jobID+suffixID
+                #print(jobID+suffixID)
+                #print(bad)
+                msg.emailService(combinedJobID, bad)
 
     
