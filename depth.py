@@ -13,33 +13,31 @@ flag = 0
 def checkIfNormal(filepath):
     try:
       int(filepath[8]) #8th char is the the beginning of the job number. 
-      #print(filepath)
     except ValueError:
         log.logger(f"Abnormal Folder Found: {filepath}")
-        #print()
+        
    
 def jobDiscovery():
     for filename in glob.iglob(rootFolder+'/*/', recursive=True): #Finds the outside jobnumber eg 14079
         checkIfNormal(filename)
-        #print ("Job: ", filename)
-        log.logger(f"Job: {filename}")
-        scan.scanFolderIgnore(filename)
-        # flag, toLog = scan.scanFolderIgnore(filename)
-        # if flag==None:
-        #     print("YAY!")
-        # else:
-        #     print(toLog)
-      
+        #log.logger(f"Job: {filename}")
+        bad = scan.scanFolderIgnore(filename)
+        #print('Filename: '+filename[8:13])
+        jobID = filename[8:13]
+        #print(folderSerached)
+        if bad != None:
+            print(jobID)
+            print(bad)
+   
         
 
         for suffix in glob.iglob(filename+'/_?/', recursive=True): # Takes Jobnumber and searches for a suffix and returns full path eg J:\2014\14011\_B\
-            #print('Sacnning', suffix)
-            log.logger(f'Sacnning {suffix}')
-            scan.scanFolder(suffix)
-            # flag, toLog = scan.scanFolder(suffix)
-            # if flag==None:
-            #     print("YAY!")
-            # else:
-            #     print(toLog)
+           # log.logger(f'Sacnning {suffix}')
+            bad = scan.scanFolder(suffix)
+            suffixID = suffix[15]
+            #print(suffixFullName)
+            if bad != None:
+                print(jobID+suffixID)
+                print(bad)
 
     
