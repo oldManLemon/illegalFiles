@@ -43,7 +43,7 @@ def emailService(jobNumber, illegalFiles):
 
 
             # setup the parameters of the message
-    print(sendto)        
+    #print(sendto)        
     msg['From']=MY_ADDRESS
     msg['To']=sendto
     msg['Subject']=jobNumber+" Contains files that should be filed elsewhere"
@@ -53,7 +53,7 @@ def emailService(jobNumber, illegalFiles):
         message += fname+", "
     message += f"<br>You are being sent this email because you are registered as working on <b>{jobNumber}</b>.<br>"
     message += f"As per BW's procedures <a href='http://bwwiki:49494/point-cloud-procedures/'>Point Cloud, CCTV, GoPro Procuedures</a>"
-    message += " you will need to the below files into an appropriate folder.<br>"
+    message += " you will need move to the below files into an appropriate folder.<br> Generally <a href='\\\hawkeye\XternalData'>\\\hawkeye\XternalData</a>"
     #message = f"Please see x and file or delete this files as you see fit.\n {illegalFiles}, once these are you removed I will forgive you"
     for badFile in illegalFiles:
         #message = messageTemplate.substitute(badFiles=badFile.title()+'\r\n').join(msg)

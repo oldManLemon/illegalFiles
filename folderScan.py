@@ -17,11 +17,11 @@ depth = 0
 # Scan the Suffix Folders
 def scanFolder(folder):
     badFiles = []
-    flag = 0
+    #flag = 0
     for dirpath, dirnames, filenames in os.walk(folder):
         
         for filename in [f for f in filenames if f.endswith(find)]:
-            flag = 1
+            #flag = 1
             
             toLog = (os.path.join(dirpath, filename))
             log.logger(toLog)
@@ -33,12 +33,12 @@ def scanFolder(folder):
 
 #Scan the the main folder ignoring suffixes
 def scanFolderIgnore(folder):
-    flag = 0
+    #flag = 0
     badFiles = []   
     for dirpath, dirs, filenames in os.walk(folder,topdown=True):
         dirs[:] = [d for d in dirs if d not in settings.exclude]
         for filename in [f for f in filenames if f.endswith(find)]:
-            flag =1
+            #flag =1
                 
             toLog = (os.path.join(dirpath, filename))
             log.logger(toLog)
