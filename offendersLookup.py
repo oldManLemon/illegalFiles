@@ -34,14 +34,16 @@ def dataMagic(jobChosen):
         #    return(row)
 
     def nameSearcher(number):
+        #getNameStaff = "SELECT * FROM dbo.Staff where StaffID="+str(number)+"AND CurrentEmploy = 1;"
+        #Cleaned out later as returning TypeError None is harder to deal with here. Check bottom of file
         getNameStaff = "SELECT * FROM dbo.Staff where StaffID="+str(number)+";"
         cursor.execute(getNameStaff)
         row = cursor.fetchone()
-        return row[1],row[3],row[9]
+        return row[1],row[3],row[9],row[11]
 
     def namingNames(head,minions):
         contacts = []
-
+        #oringally meant to check if both leader and director were same person, does nothing now. However in case I have left it there, head can not = 2. 
         if (len(head) == 2):
             i = 0
             while i < len(head):
@@ -63,7 +65,16 @@ def dataMagic(jobChosen):
     leaders = headOffenders(jobChosen)
     staff = staffOffenders(jobChosen)
     contactList = namingNames(leaders,staff)
-    return contactList
+    #Remove staff member if not currently employed!
+    contactListTrue = []
+    for contact in contactList:
+        if contact[3]:
+            #print(contact)
+            contactListTrue.append(contact)
+    contactListTrue = set(contactListTrue) #Removes Duplicates
+    print(contactListTrue)
+    
+    return contactListTrue
     
    
     
@@ -71,14 +82,14 @@ def dataMagic(jobChosen):
 
    
 
-#eh = dataMagic('11050f')
+#eh = dataMagic('16339')
 #print(eh)
 #for contact in eh:
-    #print(contact)
-    #firstName = contact[0]
-    #lastName = contact[1]
-    #email = contact[2]
-    #print(firstName, lastName, email)
+#    print(contact)
+#    firstName = contact[0]
+#    lastName = contact[1]
+#    email = contact[2]
+#    print(firstName, lastName, email)
 
 
 #print(test)

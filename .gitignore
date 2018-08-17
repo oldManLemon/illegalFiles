@@ -4,3 +4,5 @@ email.py
 *.log
 
 settings.py
+email.html
+key.txt
