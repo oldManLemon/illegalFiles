@@ -1,5 +1,5 @@
 
-![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/Version-1.0.5-blue.svg)
 ![Build](https://img.shields.io/badge/Build-passing-green.svg)
 ![Python](https://img.shields.io/badge/Python-3.6-yellow.svg)
 

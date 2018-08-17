@@ -55,6 +55,7 @@ def emailService(jobNumber, illegalFiles):
     message += f"<br><br>You are being sent this email because you are registered as working on <b>{jobNumber}</b>.<br>"
     message += f"As per BW's procedures <a href='http://bwwiki:49494/point-cloud-procedures/'>Point Cloud, CCTV, GoPro Procuedures</a>"
     message += " you will need move to the below files into an appropriate folder.<br> Generally <a href='\\hawkeye\XternalData'>\\hawkeye\XternalData</a><br>"
+    message += 'If you are moving CCTV, Bill would like to remind you that you should copy the viewing program as well just in case. <br><br>'
     #message = f"Please see x and file or delete this files as you see fit.\n {illegalFiles}, once these are you removed I will forgive you"
     for badFile in illegalFiles:
         #message = messageTemplate.substitute(badFiles=badFile.title()+'\r\n').join(msg)
