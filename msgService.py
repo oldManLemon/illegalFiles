@@ -33,7 +33,7 @@ def emailService(jobNumber, illegalFiles):
     s.starttls()
     s.login(MY_USER, PASSWORD)
     msg = MIMEMultipart()
-    sendto = 'a.hase@bornhorstward.com.au'
+    sendto = ''
     for address in email:
         try:
             sendto+=','+address
@@ -45,7 +45,7 @@ def emailService(jobNumber, illegalFiles):
             # setup the parameters of the message
     print(sendto)        
     msg['From']=MY_ADDRESS
-    msg['To']='a.hase@bornhorstward.com.au'
+    msg['To']=sendto
     msg['Subject']=jobNumber+" Contains files that should be filed elsewhere"
     #messageTemplate = read_template('message.txt')
     message = "<div style='line-height: 1.5; font-family:  Calibri, sans-serif; font-size: 16px; color: rgba(0, 0, 0, 0.87);'>"

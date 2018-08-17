@@ -25,7 +25,9 @@ def scanFolder(folder):
             
             toLog = (os.path.join(dirpath, filename))
             log.logger(toLog)
+            #badFiles.append((dirpath, filename))
             badFiles.append(toLog)
+    #print(badFiles)
     if badFiles:
         return badFiles
             
@@ -42,8 +44,12 @@ def scanFolderIgnore(folder):
                 
             toLog = (os.path.join(dirpath, filename))
             log.logger(toLog)
-            #print(dirs)
+            #badFolder = (os.path.join(dirpath))
+            
+    
+            #badFiles.append((dirpath,filename))
             badFiles.append(toLog)
+    #print(badFiles)
     if badFiles:
         return badFiles
     

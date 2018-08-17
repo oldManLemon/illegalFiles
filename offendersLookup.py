@@ -72,7 +72,7 @@ def dataMagic(jobChosen):
             #print(contact)
             contactListTrue.append(contact)
     contactListTrue = set(contactListTrue) #Removes Duplicates
-    print(contactListTrue)
+    #print(contactListTrue)
     
     return contactListTrue
     

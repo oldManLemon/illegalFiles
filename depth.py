@@ -45,4 +45,3 @@ def jobDiscovery():
                 #print(bad)
                 msg.emailService(combinedJobID, bad)
 
-    
