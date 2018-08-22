@@ -21,9 +21,10 @@ def dataMagic(jobChosen):
         #         return (row[13],) #the comma makes it a tuple, easier to deal with for consistency
         #     else:
         #         return (row[13], row[14])
-        """ Only get Project Leaders as per Brett Request"""
+        """ Only get Project Leaders as per Brett's Request"""
         while row:
             return (row[14],)
+
     """ Get the Staff """
     def staffOffenders(jobChosen):
         findStaff = "select * from dbo.Project_Staff where ProjectNumber='"+str(jobChosen)+"';"
@@ -43,7 +44,7 @@ def dataMagic(jobChosen):
 
     def namingNames(head,minions):
         contacts = []
-        #oringally meant to check if both leader and director were same person, does nothing now. However in case I have left it there, head can not = 2. 
+        #oringally meant to check if both leader and director were same person, does nothing now. However in case I have left it there, head can not = 2 currently
         if (len(head) == 2):
             i = 0
             while i < len(head):
@@ -77,10 +78,9 @@ def dataMagic(jobChosen):
     return contactListTrue
     
    
-    
-    
 
-   
+
+""" Testing Zone """
 
 #eh = dataMagic('16339')
 #print(eh)
