@@ -1,0 +1,10 @@
+
+# Here are settings
+#scanDir = 'F:\\illegalFiles'
+scanDir = 'J:\\2017'
+illegals = ('.mov', '.avi', '.wmv', '.mpg','.mkv','.flv','.rcp','.rcs')
+masterEmail = ''
+masterUser = ''
+masterPass = ''
+# Designed to Exclude the Suffixes, yes this is ugly but I couldn't come up with a better method
+exclude = ('_A', '_B', '_C', '_D', '_E','_F', '_G', '_H', '_I', '_J','_K', '_L', '_M', '_N', '_O','_P', '_Q', '_R', '_S', '_T','_U', '_V', '_W', '_X', '_Y', '_Z')

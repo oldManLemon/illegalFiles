@@ -16,7 +16,7 @@ The program could also move these files itself. The idea is however to encourage
 
 ## How to use
 Python must be installed. The program uses python3.6, this means 3.4+ should be fine. 
-1. Check settings are filled out correctly. `settings.py`
+1. Check settings are filled out correctly. `settings.py.0` should be changed to `settings.py`.
 2. cd to directory where files are located
 3. `python main.py`
 4. Wait, the program will now either run or throw errors at you. 
