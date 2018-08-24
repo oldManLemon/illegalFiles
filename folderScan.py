@@ -83,26 +83,22 @@ def scanFolderZip(folder):
             zipFiles.append(filename)
             paths.append(toLog)
             #print(filename)
-    """ Cleaning the list of lists. Simply gets the all the sublists first, then gets the items 
-    of those sublists and adds them one by one to our flat list """
-    #print(folders)
-    # for sublists in folders:
-    #     for item in sublists:
-    #         flatFolders.append(item)
-
-    #duplicatedZips = set(os.path.basename(os.path.normpath(folders))) & set(os.path.basename(os.path.normpath(paths)))
+   
     """ Get the paths """
     duplicatedZips = set(paths) & set(folders)
 
-    #for path in paths:
-        #print(path)
-        #path = os.path.basename(os.path.normpath(path))
-        #print(path)
+   
 
-    print(duplicatedZips)
     
-demo = 'J:\\2014\\14374'   
-example = scanFolderZip(demo)    
+    for path in duplicatedZips:
+        trim = os.path.basename(os.path.normpath(path))
+        trimlen = len(trim)
+        path = path[:-trimlen]
+        print("Please Look in", path, "\n for ", trim, "and ", trim+".zip")
+        print("They appear to be extracted zips ie duplicates. Please remove either the folder or the zip or I will remove you!")
+    
+demo = 'J:\\2014\\14250'   
+scanFolderZip(demo)    
 
 #Scan the the main folder ignoring suffixes
 """ def scanFolderIgnoreZip(folder):
