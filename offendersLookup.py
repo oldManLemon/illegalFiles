@@ -1,10 +1,11 @@
 import pyodbc
+import settings
 
 
-server = 'bwsql'
-database = 'infobase'
-username = 'infobase'
-password = 'ib'
+server = settings.server
+database = settings.database
+username = settings.username
+password = settings.password
 
 conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
 cursor = conn.cursor()
