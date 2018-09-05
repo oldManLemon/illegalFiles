@@ -3,6 +3,7 @@ import settings
 import folderScan as scan
 import log
 import msgService as msg
+import zipMsgService as zipMsg
 
 rootFolder = settings.scanDir
 find =  settings.illegals
@@ -44,4 +45,33 @@ def jobDiscovery():
                 #print(jobID+suffixID)
                 #print(bad)
                 msg.emailService(combinedJobID, bad)
+
+
+def zipDiscovery():
+    for filename in glob.iglob(rootFolder+'/*/', recursive=True): #Finds the outside jobnumber eg 14079
+        checkIfNormal(filename)
+        #log.logger(f"Job: {filename}")
+        bad = scan.scanFolderIgnoreZip(filename)
+        #print('Filename: '+filename[8:13])
+        jobID = filename[8:13]
+        #print(folderSerached)
+        if bad:
+            #print(jobID)
+            #print(bad)
+            zipMsg.emailService(jobID, bad)
+
+   
+        
+
+        for suffix in glob.iglob(filename+'/_?/', recursive=True): # Takes Jobnumber and searches for a suffix and returns full path eg J:\2014\14011\_B\
+           # log.logger(f'Sacnning {suffix}')
+            bad = scan.scanFolderZip(suffix)
+            suffixID = suffix[15]
+            #print(suffixFullName)
+            if bad:
+                combinedJobID = jobID+suffixID
+                #print(combinedJobID)
+                #print(bad)
+                zipMsg.emailService(combinedJobID, bad)
+
 
