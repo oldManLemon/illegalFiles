@@ -2,3 +2,6 @@
 - Cleaned Email Structure
 - Removed Users who no longer work here
 - Removed duplicate users, ie where user is both staffmember and proj leader
+
+5-09
+- Added ability to check for zip folders with similar problems and create a seperate job for them with a seperate email for zip folder issues. 

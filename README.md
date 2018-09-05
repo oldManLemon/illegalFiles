@@ -24,7 +24,7 @@ Python must be installed. The program uses python3.6, this means 3.4+ should be 
 
 ## Planned Development
 - Check folder structures and file locations against rules, such as should a file be there or not?
-- Check Zip file and folder names to see if they are the same and flag
-- Remove non existant staff
-- Remove double ups incase Proj Leader is also included as staff memember
+- ~~Check Zip file and folder names to see if they are the same and flag~~
+- ~~Remove non existant staff~~
+- ~~Remove double ups incase Proj Leader is also included as staff memember~~
 
